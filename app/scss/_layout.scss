@@ -1,0 +1,91 @@
+@use 'functions' as f;
+
+main {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .calc {
+        width: 100%;
+        height: fit-content;
+        max-width: f.toRem(540);
+        box-sizing: content-box;
+        margin-inline: auto;
+        padding-inline: f.toRem(24);
+        padding-block: f.toRem(30);
+        font-family: 'League Spartan', sans-serif;
+        font-weight: bold;
+
+        &__top {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: f.toRem(32);
+
+            
+            &__logo {
+                height: f.toRem(29);
+                line-height: f.toRem(29);
+                font-size: f.toRem(32);
+                margin-inline-start: f.toRem(7);
+            }
+
+            &__theme-switcher {
+                display: grid;
+                grid-template-areas: "none choices" "label toggle";
+                row-gap: f.toRem(5);
+                column-gap: f.toRem(26);
+
+                &__label {
+                    grid-area: label;
+                    font-size: f.toRem(12);
+                    line-height: f.toRem(24);
+                    text-align: center;                    
+                }
+
+                &__choices {
+                    grid-area: choices;
+                    display: flex;
+                    justify-content: space-around;
+                    line-height: 1;
+                    font-size: f.toRem(12);
+                }
+
+                & .toggle-btn {
+                    grid-area: toggle;
+                }
+
+                &__toggle-btn::after {
+                    grid-area: toggle;
+                    width: f.toRem(71);
+                    height: f.toRem(26);
+                    border-radius: 9999rem;
+                }
+            }
+        }
+
+        &__screen {
+            height: f.toRem(88);
+            width: 100%;
+            margin-bottom: f.toRem(24);
+            border-radius: f.toRem(10);
+        }
+
+        &__keys {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(0.813rem, 5.164vw + -0.398rem, 1.5rem);
+            border-radius: f.toRem(10);
+            padding: f.toRem(24);
+
+            &__btn-wrapper {
+                height: f.toRem(64);
+
+                &:nth-last-child(-n+2){
+                    grid-column: span 2;
+                }
+            }
+        }
+    }
+}

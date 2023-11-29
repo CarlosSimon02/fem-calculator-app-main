@@ -1,0 +1,53 @@
+@use 'functions' as f;
+
+button {
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    border: 0;
+}
+
+.toggle-btn {
+    width: f.toRem(71);
+    height: f.toRem(26);
+    border-radius: 9999rem;
+    position: relative;
+}
+
+.toggle-btn::after {
+    content: "";
+    width: f.toRem(16);
+    height: f.toRem(16);
+    border-radius: 9999rem;
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.calc__keys__btn-wrapper {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: "";
+        height: f.toRem(64);
+        width: 100%;
+        border-radius: f.toRem(5);
+        bottom: 0;
+        left: 0;
+    }
+    
+    & button {
+        position: relative;
+        height: f.toRem(60);
+        border-radius: f.toRem(5);
+        font-size: clamp(2rem, 3.756vw + 1.12rem, 2.5rem);
+        padding-top: 5px;
+        z-index: 1;
+
+        &.font-20 {
+            font-size: clamp(1.25rem, 3.756vw + 0.37rem, 1.75rem);
+        }
+    }
+}

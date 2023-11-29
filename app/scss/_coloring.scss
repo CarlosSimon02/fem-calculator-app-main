@@ -1,0 +1,76 @@
+* {
+    transition: background-color .5s,
+                color .5s;
+}
+
+.bg1 {
+    background-color: var(--color-main-bg);
+}
+
+.bg2 {
+    background-color: var(--color-toggle-keypad-bg);
+}
+
+.bg3 {
+    background-color: var(--color-scr-bg);
+    color: var(--color-txt-header);
+}
+
+.btn1 {
+    background-color: var(--color-equal-key);
+
+    .toggle:hover>& {
+        background-color: var(--color-equal-key-hover);
+    }
+}
+
+.btn2 {
+    background-color: var(--color-other-key);
+    box-shadow: 0 4px var(--color-other-key-shadow);
+    color: var(--color-txt-other);
+
+    &:hover {
+        background-color: var(--color-other-key-hover);
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.btn3 {
+    background-color: var(--color-del-reset-key);
+    // box-shadow: 0 4px var(--color-del-reset-key-shadow);
+    color: var(--color-txt-del-reset);
+
+    &+* {
+        background-color: var(--color-del-reset-key-shadow);
+    }
+
+    &:hover {
+        background-color: var(--color-del-reset-key-hover);
+        transition: background-color .5s;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.btn4 {
+    background-color: var(--color-equal-key);
+    box-shadow: 0 4px var(--color-equal-key-shadow);
+    color: var(--color-txt-equal);
+
+    &:hover {
+        background-color: var(--color-equal-key-hover);
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
+
+.txt1 {
+    color: var(--color-txt-header);
+}

@@ -1,0 +1,107 @@
+[data-theme="1"] {
+    //---backgrounds
+
+    --color-main-bg: hsl(222, 26%, 31%);
+    --color-toggle-keypad-bg: hsl(223, 31%, 20%);
+    --color-scr-bg: hsl(224, 36%, 15%);
+
+    //---keys
+
+    --color-del-reset-key-hover: hsl(224, 51%, 76%);
+    --color-del-reset-key: hsl(225, 21%, 49%);
+    --color-del-reset-key-shadow: hsl(224, 28%, 35%);
+    --color-equal-key-hover:hsl(6, 93%, 67%);
+    --color-equal-key: hsl(6, 63%, 50%);
+    --color-equal-key-shadow: hsl(6, 70%, 34%);
+    --color-other-key-hover: hsl(0, 0%, 100%);
+    --color-other-key: hsl(30, 25%, 89%);
+    --color-other-key-shadow: hsl(28, 16%, 65%);
+
+    //---text
+
+    --color-txt-other: hsl(221, 14%, 31%);
+    --color-txt-header: hsl(0, 0%, 100%);
+    --color-txt-del-reset: hsl(0, 0%, 100%);
+    --color-txt-equal: hsl(0, 0%, 100%);
+}
+
+[data-theme="2"] {
+    //---backgrounds
+
+    --color-main-bg: hsl(0, 0%, 90%);
+    --color-toggle-keypad-bg: hsl(0, 5%, 81%);
+    --color-scr-bg: hsl(0, 0%, 93%);
+
+    //---keys
+
+    --color-del-reset-key-hover: hsl(185, 41%, 56%);
+    --color-del-reset-key: hsl(185, 42%, 37%);
+    --color-del-reset-key-shadow: hsl(185, 58%, 25%);
+    --color-equal-key-hover: hsl(25, 100%, 61%);
+    --color-equal-key: hsl(25, 98%, 40%);
+    --color-equal-key-shadow: hsl(25, 99%, 27%);
+    --color-other-key-hover: hsl(0, 0%, 100%);
+    --color-other-key: hsl(45, 7%, 89%);
+    --color-other-key-shadow: hsl(35, 11%, 61%);
+
+    //---text
+
+    --color-txt-other: hsl(60, 10%, 19%);
+    --color-txt-header: hsl(60, 10%, 19%);
+    --color-txt-del-reset: hsl(0, 0%, 100%);
+    --color-txt-equal: hsl(0, 0%, 100%);
+}
+
+[data-theme="3"] {
+    //---backgrounds
+
+    --color-main-bg: hsl(0, 0%, 90%);
+    --color-toggle-keypad-bg: hsl(0, 5%, 81%);
+    --color-scr-bg: hsl(0, 0%, 93%);
+
+    //---keys
+
+    --color-del-reset-key-hover: hsl(185, 41%, 56%);
+    --color-del-reset-key: hsl(185, 42%, 37%);
+    --color-del-reset-key-shadow: hsl(185, 58%, 25%);
+    --color-equal-key-hover: hsl(25, 100%, 61%);
+    --color-equal-key: hsl(25, 98%, 40%);
+    --color-equal-key-shadow: hsl(25, 99%, 27%);
+    --color-other-key-hover: hsl(0, 0%, 100%);
+    --color-other-key: hsl(45, 7%, 89%);
+    --color-other-key-shadow: hsl(35, 11%, 61%);
+
+    //---text
+
+    --color-txt-other: hsl(60, 10%, 19%);
+    --color-txt-header: hsl(60, 10%, 19%);
+    --color-txt-del-reset: hsl(0, 0%, 100%);
+    --color-txt-equal: hsl(0, 0%, 100%);
+}
+
+[data-theme="3"] {
+    //---backgrounds
+
+    --color-main-bg: hsl(268, 75%, 9%);
+    --color-toggle-keypad-bg: hsl(268, 71%, 12%);
+    --color-scr-bg: hsl(268, 71%, 12%);
+
+    //---keys
+
+    --color-del-reset-key-hover: rgba(135, 49, 176, 1);
+    --color-del-reset-key: hsl(281, 89%, 26%);
+    --color-del-reset-key-shadow: hsl(285, 91%, 52%);
+    --color-equal-key-hover: rgba(148, 255, 249, 1);
+    --color-equal-key: hsl(176, 100%, 44%);
+    --color-equal-key-shadow: hsl(177, 92%, 70%);
+    --color-other-key-hover: rgba(107, 52, 172, 1);
+    --color-other-key: hsl(268, 47%, 21%);
+    --color-other-key-shadow: hsl(290, 70%, 36%);
+
+    //---text
+
+    --color-txt-other: hsl(52, 100%, 62%);
+    --color-txt-header: hsl(52, 100%, 62%);
+    --color-txt-del-reset: hsl(0, 0%, 100%);
+    --color-txt-equal: hsl(198, 20%, 13%);
+}
