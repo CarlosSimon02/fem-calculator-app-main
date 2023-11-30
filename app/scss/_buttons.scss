@@ -23,6 +23,18 @@ button {
     left: 50px;
     top: 50%;
     transform: translateY(-50%);
+
+    [data-theme="1"] & {
+        left: f.toRem(5);
+    }
+
+    [data-theme="2"] & {
+        left: f.toRem(27);
+    }
+    
+    [data-theme="3"] & {
+        left: f.toRem(50);
+    }
 }
 
 .calc__keys__btn-wrapper {
@@ -31,7 +43,7 @@ button {
     &::after {
         position: absolute;
         content: "";
-        height: f.toRem(64);
+        height: f.toRem(60);
         width: 100%;
         border-radius: f.toRem(5);
         bottom: 0;
@@ -45,9 +57,15 @@ button {
         font-size: clamp(2rem, 3.756vw + 1.12rem, 2.5rem);
         padding-top: 5px;
         z-index: 1;
+        top: 0;
 
         &.font-20 {
             font-size: clamp(1.25rem, 3.756vw + 0.37rem, 1.75rem);
+        }
+
+        &:active {
+            transition: background-color .5s, color .5s, top .1s;
+            top: f.toRem(4);
         }
     }
 }

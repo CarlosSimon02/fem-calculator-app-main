@@ -1,6 +1,7 @@
-* {
-    transition: background-color .5s,
-                color .5s;
+*,
+*::before,
+*::after {
+    transition: background-color .5s, color .5s, top .5s, left .5s;
 }
 
 .bg1 {
@@ -16,6 +17,64 @@
     color: var(--color-txt-header);
 }
 
+.toggle-btn {
+    &::after {
+        background-color: var(--color-equal-key);
+        color: var(--color-txt-equal);
+    }
+
+    &:is(:hover, :active)::after {
+        background-color: var(--color-equal-key-hover);
+    }
+}
+
+.calc__keys__btn-wrapper {
+    &.x1 {
+        &::after {
+            background-color: var(--color-other-key-shadow);
+        }
+
+        & button {
+            background-color: var(--color-other-key);
+            color: var(--color-txt-other);
+
+            &:is(:hover, :active) {
+                background-color: var(--color-other-key-hover);
+            }
+        }
+    }
+
+    &.x2 {
+        &::after {
+            background-color: var(--color-del-reset-key-shadow);
+        }
+
+        & button {
+            background-color: var(--color-del-reset-key);
+            color: var(--color-txt-del-reset);
+
+            &:is(:hover, :active) {
+                background-color: var(--color-del-reset-key-hover);
+            }
+        }
+    }
+
+    &.x3 {
+        &::after {
+            background-color: var(--color-equal-key-shadow);
+        }
+
+        & button {
+            background-color: var(--color-equal-key);
+            color: var(--color-txt-equal);
+
+            &:is(:hover, :active) {
+                background-color: var(--color-equal-key-hover);
+            }
+        }
+    }
+}
+
 .btn1 {
     background-color: var(--color-equal-key);
 
@@ -26,7 +85,6 @@
 
 .btn2 {
     background-color: var(--color-other-key);
-    box-shadow: 0 4px var(--color-other-key-shadow);
     color: var(--color-txt-other);
 
     &:hover {
@@ -40,7 +98,6 @@
 
 .btn3 {
     background-color: var(--color-del-reset-key);
-    // box-shadow: 0 4px var(--color-del-reset-key-shadow);
     color: var(--color-txt-del-reset);
 
     &+* {
@@ -59,7 +116,6 @@
 
 .btn4 {
     background-color: var(--color-equal-key);
-    box-shadow: 0 4px var(--color-equal-key-shadow);
     color: var(--color-txt-equal);
 
     &:hover {

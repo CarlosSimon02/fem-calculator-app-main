@@ -66,10 +66,28 @@ main {
         }
 
         &__screen {
-            height: f.toRem(88);
+            height: clamp(5.5rem, 18.779vw + 1.099rem, 8rem);
             width: 100%;
             margin-bottom: f.toRem(24);
             border-radius: f.toRem(10);
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: clamp(0rem, 4.695vw + -1.1rem, 0.625rem);
+            padding-inline: f.toRem(24);
+
+            &__sub {
+                font-size: clamp(0.875rem, 2.817vw + 0.215rem, 1.25rem);
+                font-weight: normal;
+                // display: none;
+            }
+
+            &__main {
+                font-size: clamp(2.5rem, 7.512vw + 0.739rem, 3.5rem);
+                margin-top: f.toRem(5);
+                line-height: 1;
+            }
         }
 
         &__keys {

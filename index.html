@@ -9,8 +9,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap" rel="stylesheet"> 
   <title>Frontend Mentor | Calculator app</title>
+  <script defer src="app/js/script.js"></script>
 </head>
 
 <body class="bg1" data-theme="1">
@@ -25,33 +26,33 @@
             <span>2</span>
             <span>3</span>
           </div>
-          <button class="toggle-btn bg2">
+          <button id="toggle-btn" class="toggle-btn bg2">
           </button>
         </div>
       </div>
       <div class="calc__screen bg3">
-        <p class="txt1 calc__screen__sub"></p>
-        <p class="txt1 calc__screen__main"></p>
+        <p class="calc__screen__sub txt1">325,249 +</p>
+        <p class="calc__screen__main txt1">124543</p>
       </div>
       <div class="calc__keys bg2">
-        <div class="calc__keys__btn-wrapper"><button class="btn2">7</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">8</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">9</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn3 font-20">DEL</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">4</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">5</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">6</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">+</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">1</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">2</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">3</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">-</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">.</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">0</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">/</button></div>
-        <div class="calc__keys__btn-wrapper"><button class="btn2">x</button></div>
-        <div class="calc__keys__btn-wrapper span-2"><button class="btn3 font-20">RESET</button></div>
-        <div class="calc__keys__btn-wrapper span-2"><button class="btn1 font-20">=</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>7</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>8</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>9</button></div>
+        <div class="calc__keys__btn-wrapper x2"><button class="font-20">DEL</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>4</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>5</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>6</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>+</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>1</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>2</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>3</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>-</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>.</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>0</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>/</button></div>
+        <div class="calc__keys__btn-wrapper x1"><button>x</button></div>
+        <div class="calc__keys__btn-wrapper x2 span-2"><button class="font-20">RESET</button></div>
+        <div class="calc__keys__btn-wrapper x3 span-2"><button class="font-20">=</button></div>
       </div>
     </article>
   </main>
