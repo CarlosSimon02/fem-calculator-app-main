@@ -72,20 +72,24 @@ main {
             border-radius: f.toRem(10);
             text-align: right;
             display: flex;
+            align-items: end;
             flex-direction: column;
             justify-content: center;
             gap: clamp(0rem, 4.695vw + -1.1rem, 0.625rem);
             padding-inline: f.toRem(24);
+            overflow: hidden;
 
             &__sub {
                 font-size: clamp(0.875rem, 2.817vw + 0.215rem, 1.25rem);
                 font-weight: normal;
+                overflow-wrap: normal;
             }
 
             &__main {
                 font-size: clamp(2.5rem, 7.512vw + 0.739rem, 3.5rem);
                 margin-top: f.toRem(5);
                 line-height: 1;
+                overflow-wrap: normal;
             }
         }
 
