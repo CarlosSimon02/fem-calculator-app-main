@@ -50,6 +50,9 @@ let calculator = {
             let result = localize(parseFloat(unlocalize(mainScreen.innerHTML).concat(char)));
             mainScreen.innerHTML = (result).toString();
         }
+
+        if(this.state === 2) 
+            this.secondNumber = this.getMainScreenVal();
     },
 
     backspace: function() {
@@ -71,73 +74,89 @@ let calculator = {
             }
             
             mainScreen.innerHTML = result;
+
+            if(this.state === 2) 
+                this.secondNumber = this.getMainScreenVal();
         }
     },
 
     displayOperation: function(operationChar) {
-        if(this.state === 1) {
-            this.firstNumber = this.getMainScreenVal();
-            this.state = 2;
-            this.stateChanged = true;
-            this.operation = operationChar;
-        } 
-        
-        if(this.state === 2) {
-            if(this.secondNumber === null) {
-                this.operation = operationChar;
-            } else {
-                this.firstNumber = this.performOperation();
-                this.operation = operationChar;
-                this.stateChanged = true;
-                this.secondNumber = null;
-            }
-        } else if(this.state === 3) {
-            this.state = 2;
+        if(this.state === 3)
             this.secondNumber = null;
-            this.firstNumber = this.getMainScreenVal();
-        }
+        
+        this.firstNumber = this.secondNumber !== null ? this.performOperation() : this.getMainScreenVal();
+        this.operation = operationChar;
+        this.state = 2;
+        this.stateChanged = true;
+        this.secondNumber = null;
 
-        subScreen.innerHTML = this.firstNumber + " " + this.operation;
+        subScreen.innerHTML = `${this.firstNumber} ${this.operation}`;
         mainScreen.innerHTML = localize(this.firstNumber);
     },
 
     performOperation: function() {
-        switch(this.operation) {
-            case '+':
-                return parseFloat(this.firstNumber) + parseFloat(this.secondNumber);
-            case '-':
-                return parseFloat(this.firstNumber) - parseFloat(this.secondNumber);
-            case 'x':
-                return parseFloat(this.firstNumber) * parseFloat(this.secondNumber);
-            case '/':
-                return parseFloat(this.firstNumber) / parseFloat(this.secondNumber);
+        if(this.secondNumber === null && this.firstNumber !== null) {
+            return this.firstNumber;
+        } else if(this.firstNumber === null && this.secondNumber !== null) {
+            return this.secondNumber;
+        } else if(this.firstNumber === null && this.secondNumber === null) {
+            return 0;
+        } else {
+            switch(this.operation) {
+                case '+':
+                    return parseFloat(this.firstNumber) + parseFloat(this.secondNumber);
+                case '-':
+                    return parseFloat(this.firstNumber) - parseFloat(this.secondNumber);
+                case 'x':
+                    return parseFloat(this.firstNumber) * parseFloat(this.secondNumber);
+                case '/':
+                    return parseFloat(this.firstNumber) / parseFloat(this.secondNumber);
+            }
         }
     },
 
     evaluate: function() {
+        if(this.state === 2) {
+            this.secondNumber = this.getMainScreenVal();
+        } else {
+            this.firstNumber = this.getMainScreenVal();
+        }
+
+        this.state = 3;
         this.stateChanged = true;
 
-        if(this.state === 3) {
-            this.firstNumber = this.getMainScreenVal();
-            subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
-            mainScreen.innerHTML = localize(this.performOperation());
-        } else {
-            this.state = 3;
-            if(this.operation === null) {
-                if(this.firstNumber === null)
-                    this.firstNumber = this.getMainScreenVal();
+        let firstNumStr = this.firstNumber === null ? `` : `${this.firstNumber} `;
+        let operationStr = this.operation === null ? `` : `${this.operation} `;
+        let secondNumStr = this.secondNumber === null ? `` : `${this.secondNumber} `;
+        subScreen.innerHTML = `${firstNumStr}${operationStr}${secondNumStr} =`;
+        mainScreen.innerHTML = localize(this.performOperation());
+        
+
+        // if(this.operation === null) {
+        //     this.secondNumber = this.getMainScreenVal();
+        // } else {
+        //     this.firstNumber = this.performOperation();
+        // }
+
+        
+
+        // if(this.state === 3) {
+        //     subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
+        //     mainScreen.innerHTML = localize(this.performOperation());
+        // } else {
+        //     if(this.operation === null) {
+        //         subScreen.innerHTML = this.firstNumber + " =";
+        //         mainScreen.innerHTML = this.firstNumber;
+        //     } else {
+        //         if(this.secondNumber === null) {
+        //             this.secondNumber = this.getMainScreenVal();
+        //         }
     
-                subScreen.innerHTML = this.firstNumber + " =";
-                mainScreen.innerHTML = this.firstNumber;
-            } else {
-                if(this.secondNumber === null) {
-                    this.secondNumber = this.getMainScreenVal();
-                }
-    
-                subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
-                mainScreen.innerHTML = this.performOperation();
-            }
-        }
+        //         subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
+        //         mainScreen.innerHTML = this.performOperation();
+        //     }
+        // }
+
     },
 
     reset: function() {
