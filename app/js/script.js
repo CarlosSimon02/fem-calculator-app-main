@@ -24,7 +24,7 @@ let calculator = {
     firstNumber: null,
     secondNumber: null,
     operation: null,
-    state: 1,  //1: first input, 2: second input, 3: evaluate
+    state: 1,  //1: first input, 2: second input, 3: evaluate, 4:error
     stateChanged: false,
 
     getMainScreenVal: function() {
@@ -83,15 +83,15 @@ let calculator = {
     displayOperation: function(operationChar) {
         if(this.state === 3)
             this.secondNumber = null;
-        
+
         this.firstNumber = this.secondNumber !== null ? this.performOperation() : this.getMainScreenVal();
         this.operation = operationChar;
-        this.state = 2;
+        this.state = this.state === 4 ? 4 : 2;
         this.stateChanged = true;
         this.secondNumber = null;
 
         subScreen.innerHTML = `${this.firstNumber} ${this.operation}`;
-        mainScreen.innerHTML = localize(this.firstNumber);
+        mainScreen.innerHTML = this.state === 4 ? `Too large my friend` : localize(this.firstNumber);
     },
 
     performOperation: function() {
@@ -102,15 +102,27 @@ let calculator = {
         } else if(this.firstNumber === null && this.secondNumber === null) {
             return 0;
         } else {
+            let result;
             switch(this.operation) {
                 case '+':
-                    return parseFloat(this.firstNumber) + parseFloat(this.secondNumber);
+                    result = parseFloat(this.firstNumber) + parseFloat(this.secondNumber);
+                    break;
                 case '-':
-                    return parseFloat(this.firstNumber) - parseFloat(this.secondNumber);
+                    result = parseFloat(this.firstNumber) - parseFloat(this.secondNumber);
+                    break;
                 case 'x':
-                    return parseFloat(this.firstNumber) * parseFloat(this.secondNumber);
+                    result = parseFloat(this.firstNumber) * parseFloat(this.secondNumber);
+                    break;
                 case '/':
-                    return parseFloat(this.firstNumber) / parseFloat(this.secondNumber);
+                    result = parseFloat(this.firstNumber) / parseFloat(this.secondNumber);
+                    break;
+            }
+
+            if(isNaN(result) || !isFinite(result)) {
+                this.state = 4;
+                return `${this.firstNumber} ${this.operation} ${this.secondNumber}`;
+            } else {
+                return result;
             }
         }
     },
@@ -122,41 +134,17 @@ let calculator = {
             this.firstNumber = this.getMainScreenVal();
         }
 
-        this.state = 3;
-        this.stateChanged = true;
-
         let firstNumStr = this.firstNumber === null ? `` : `${this.firstNumber} `;
         let operationStr = this.operation === null ? `` : `${this.operation} `;
         let secondNumStr = this.secondNumber === null ? `` : `${this.secondNumber} `;
         subScreen.innerHTML = `${firstNumStr}${operationStr}${secondNumStr} =`;
-        mainScreen.innerHTML = localize(this.performOperation());
+
+        let tempResult = localize(this.performOperation());
+
+        this.state = this.state === 4 ? 4 : 3;
+        this.stateChanged = true;
         
-
-        // if(this.operation === null) {
-        //     this.secondNumber = this.getMainScreenVal();
-        // } else {
-        //     this.firstNumber = this.performOperation();
-        // }
-
-        
-
-        // if(this.state === 3) {
-        //     subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
-        //     mainScreen.innerHTML = localize(this.performOperation());
-        // } else {
-        //     if(this.operation === null) {
-        //         subScreen.innerHTML = this.firstNumber + " =";
-        //         mainScreen.innerHTML = this.firstNumber;
-        //     } else {
-        //         if(this.secondNumber === null) {
-        //             this.secondNumber = this.getMainScreenVal();
-        //         }
-    
-        //         subScreen.innerHTML = `${this.firstNumber} ${this.operation} ${this.secondNumber} =`;
-        //         mainScreen.innerHTML = this.performOperation();
-        //     }
-        // }
-
+        mainScreen.innerHTML = this.state === 4 ? `Too large my friend` : tempResult;
     },
 
     reset: function() {
@@ -174,16 +162,25 @@ keys.forEach(function(key) {
     key.onclick = function() {
         switch(key.dataset.keyType) {
             case "char":
+                if(calculator.state === 4)
+                    calculator.reset();
                 calculator.displayNumber(key.innerHTML);
                 break;
             case "operation":
-                calculator.displayOperation(key.innerHTML);
+                if(calculator.state !== 4)
+                    calculator.displayOperation(key.innerHTML);
                 break;
             case "equal":
-                calculator.evaluate();
+                if(calculator.state === 4) 
+                    calculator.reset();
+                else 
+                    calculator.evaluate();
                 break;
             case "del":
-                calculator.backspace(key.innerHTML);
+                if(calculator.state === 4) 
+                    calculator.reset();
+                else 
+                    calculator.backspace();
                 break;
             case "reset":
                 calculator.reset();
@@ -199,44 +196,4 @@ function localize(numberString) {
 function unlocalize(numberString) {
     return numberString.replaceAll(',','');
 }
-
-// function displayOperation(operationChar) {
-//     if(!secondNumInputState) {
-//         secondNumInputState = true;
-//         firstNum = firstNum && operation ? performOperation() : parseFloat(mainScrWOcomma());
-//         operation = operationChar;
-//         subScreen.innerHTML = firstNum + " " + operationChar;
-//         mainScreen.innerHTML = parseFloat(mainScrWOcomma()).toLocaleString("en-US",{ maximumFractionDigits: 20 });
-//     }
-// }
-
-
-
-// function deleteLastChar() {
-//     if(!secondNumInputState) {
-//         let slicedText = mainScrWOcomma().slice(0, -1);
-//         let result = parseFloat(slicedText === "" ? 0 : slicedText).toLocaleString("en-US",{ maximumFractionDigits: 20 });
-    
-//         if(slicedText.slice(-1) === ".")
-//             result = result+=".";
-        
-//         mainScreen.innerHTML = result;
-//     }
-// }
-
-// function evaluate() {
-//     secondNum = mainScrWOcomma();
-//     subScreen.innerHTML = firstNum + " " + operation + " " + secondNum + " =";
-//     mainScreen.innerHTML = performOperation().toLocaleString("en-US",{ maximumFractionDigits: 20 });
-//     firstNum = mainScrWOcomma();
-// }
-
-// function resetScreen() {
-//     subScreen.innerHTML = null;
-//     mainScreen.innerHTML = "0";
-//     secondNumInputState = false;
-//     firstNum = null;
-//     secondNum = null;
-//     operation = null;
-// }
 
